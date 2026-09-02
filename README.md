@@ -73,7 +73,7 @@ Motion vocabulary: reveal (from beneath a rule), slide/stack (plates into the ra
 
 ## Social card
 
-`public/og.png` (1200×630) is referenced by the `og:image` meta tag with a root-relative path. Most crawlers need an absolute URL, so once the site has a domain change the tag in `index.html` to the full `https://…/og.png` URL.
+`public/og.png` (1200×630) is referenced by the `og:image` meta tag with the absolute URL `https://rivetlanding.vercel.app/og.png`. If the site moves to a custom domain, update `og:url` and `og:image` in `index.html`.
 
 ## Brand assets
 
