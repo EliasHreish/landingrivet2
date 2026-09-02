@@ -1,0 +1,16 @@
+{
+  "name": "rivet-landing",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "RIVET — revenue and operations platform for gyms in Jordan and MENA. Marketing landing page.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1",
+    "vite": "^6.3.5"
+  }
+}

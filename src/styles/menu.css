@@ -1,0 +1,297 @@
+/* ==========================================================================
+   Navigation sheet
+   An ink sheet slides in from the right. The page recedes behind it.
+   Labels reveal through a shared mask, hairlines draw, details follow.
+   ========================================================================== */
+
+html.menu-open {
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
+
+html.menu-open body {
+  background: var(--ink);
+}
+
+/* The page recedes as one sheet. JS sets --page-origin-y and the clip
+   to the current viewport so the scale happens around what the user sees. */
+.page {
+  position: relative;
+  background: var(--paper);
+  transform-origin: 100% var(--page-origin-y, 50%);
+  transition: transform 720ms var(--ease-out), clip-path 720ms var(--ease-out);
+}
+
+html.menu-open .page {
+  transform: translateX(-4%) scale(0.96);
+  clip-path: inset(var(--page-clip-top, 0px) 0 var(--page-clip-bottom, 0px) 0 round 18px);
+}
+
+html.menu-closing .page {
+  transition: transform 560ms var(--ease-inout), clip-path 560ms var(--ease-inout);
+}
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.menu.is-open,
+.menu.is-closing {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.menu__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 14, 12, 0.5);
+  opacity: 0;
+  transition: opacity 720ms var(--ease-out);
+}
+
+.menu.is-open .menu__backdrop {
+  opacity: 1;
+}
+
+.menu.is-closing .menu__backdrop {
+  transition: opacity 480ms var(--ease-inout);
+}
+
+.menu__sheet {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(720px, 100%);
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--header-h) + 1rem) var(--gutter) 2.25rem;
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateX(100%);
+  transition: transform 720ms var(--ease-out);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.menu.is-open .menu__sheet {
+  transform: translateX(0);
+}
+
+.menu.is-closing .menu__sheet {
+  transition: transform 520ms var(--ease-inout);
+}
+
+.menu__eyebrow {
+  color: var(--muted-dark);
+  opacity: 0;
+  transition: opacity 400ms var(--ease-out) 300ms;
+}
+
+.menu.is-open .menu__eyebrow {
+  opacity: 1;
+}
+
+.menu__list {
+  margin-block: auto;
+  padding-block: 2rem;
+}
+
+.menu__item {
+  position: relative;
+  --delay: calc(180ms + var(--i) * 48ms);
+}
+
+.menu__item::before,
+.menu__item:last-child::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: var(--line-dark);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 720ms var(--ease-out) var(--delay);
+}
+
+.menu__item:last-child::after {
+  top: auto;
+  bottom: 0;
+  transition-delay: calc(var(--delay) + 60ms);
+}
+
+.menu.is-open .menu__item::before,
+.menu.is-open .menu__item:last-child::after {
+  transform: scaleX(1);
+}
+
+.menu__link {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  padding-block: clamp(0.55rem, 1.4vh, 0.9rem);
+  color: var(--paper);
+  text-decoration: none;
+}
+
+/* The pin: it slides in from the left when a label is selected. */
+.menu__link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 18px;
+  height: 3px;
+  margin-top: -1px;
+  background: var(--red);
+  border-radius: 1px;
+  opacity: 0;
+  transform: translateX(-14px);
+  transition: transform 300ms var(--ease-lock), opacity 160ms linear;
+}
+
+.menu__link::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  margin-top: -4.5px;
+  border: 2px solid var(--red);
+  border-radius: 50%;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateX(-14px);
+  transition: transform 300ms var(--ease-lock), opacity 160ms linear;
+}
+
+.menu__link:hover::before,
+.menu__link:hover::after,
+.menu__link:focus-visible::before,
+.menu__link:focus-visible::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.menu__link:focus-visible {
+  outline: none;
+}
+
+.menu__index,
+.menu__mask {
+  transition: translate 320ms var(--ease-out);
+}
+
+.menu__link:hover .menu__index,
+.menu__link:hover .menu__mask,
+.menu__link:focus-visible .menu__index,
+.menu__link:focus-visible .menu__mask {
+  translate: 2.75rem 0;
+}
+
+.menu__index {
+  flex: none;
+  width: 2.25rem;
+  font-size: var(--fs-index);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--muted-dark);
+  transition: translate 320ms var(--ease-out), color var(--d-2) var(--ease-out);
+}
+
+.menu__link[aria-current="true"] .menu__index {
+  color: var(--red);
+}
+
+.menu__mask {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.06em 0.12em;
+  margin-block: -0.06em -0.12em;
+  padding-right: 0.08em;
+}
+
+@media (min-width: 768px) {
+  .menu__label {
+    white-space: nowrap;
+  }
+}
+
+.menu__list {
+  --menu-fs: clamp(1.9rem, 1rem + 3.3vw, 3.4rem);
+}
+
+.menu__label {
+  display: block;
+  font-size: var(--menu-fs);
+  font-weight: 600;
+  font-stretch: 110%;
+  letter-spacing: -0.012em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  transform: translateY(110%);
+  transition: transform 640ms var(--ease-out) var(--delay);
+}
+
+.menu.is-open .menu__label {
+  transform: translateY(0);
+}
+
+.menu.is-closing .menu__label {
+  transition: transform 260ms var(--ease-inout);
+  transform: translateY(110%);
+}
+
+.menu.is-closing .menu__item::before,
+.menu.is-closing .menu__item:last-child::after {
+  transition: transform 260ms var(--ease-inout);
+}
+
+.menu.is-closing .menu__eyebrow,
+.menu.is-closing .menu__foot {
+  transition: opacity 200ms linear;
+}
+
+.menu__foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: var(--fs-small);
+  color: var(--muted-dark);
+  opacity: 0;
+  transition: opacity 500ms var(--ease-out) 520ms;
+}
+
+.menu.is-open .menu__foot {
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .menu__sheet {
+    width: 100%;
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+  }
+
+  html.menu-open .page {
+    transform: translateX(-6%) scale(0.94);
+    clip-path: inset(var(--page-clip-top, 0px) 0 var(--page-clip-bottom, 0px) 0 round 14px);
+  }
+
+  .menu__list {
+    --menu-fs: clamp(1.6rem, 8.2vw, 2.4rem);
+  }
+
+  .menu__link:hover .menu__index,
+  .menu__link:hover .menu__mask {
+    translate: 2.25rem 0;
+  }
+}

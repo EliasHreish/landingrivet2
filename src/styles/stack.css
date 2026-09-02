@@ -1,0 +1,148 @@
+/* ==========================================================================
+   The stack — RIVET's mark at working scale.
+   A rail, plates, and one red pin. --pin-i decides where the pin sits;
+   .is-lifted decides what moves together.
+   ========================================================================== */
+
+.stack {
+  --ph: clamp(44px, 5.2vw, 76px);        /* plate height */
+  --pg: calc(var(--ph) * 0.1);            /* gap between plates */
+  --rail-w: calc(var(--ph) * 0.3);
+  --rail-gap: calc(var(--ph) * 0.42);
+  --pin-h: calc(var(--ph) * 0.3);
+  --pin-len: calc(var(--ph) * 1.5);       /* total pin length incl. the part inside the plate */
+  --pin-in: calc(var(--ph) * 0.22);       /* how far the pin sits inside the plate */
+  --pin-i: 5;
+  --lift: calc(var(--ph) * -0.38);
+  --top-pad: calc(var(--ph) * 0.5);
+  position: relative;
+  padding: var(--top-pad) calc(var(--pin-len) - var(--pin-in)) calc(var(--ph) * 0.3) calc(var(--rail-w) + var(--rail-gap));
+  color: var(--fg);
+}
+
+.stack__rail {
+  position: absolute;
+  left: 0;
+  top: calc(var(--ph) * -0.55);
+  bottom: 0;
+  width: var(--rail-w);
+  background: currentColor;
+  border-radius: 2px;
+}
+
+.stack__plates {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pg);
+}
+
+.plate {
+  height: var(--ph);
+  width: 100%;
+  background: currentColor;
+  border-radius: calc(var(--ph) * 0.12);
+  transition: transform 340ms var(--ease-lock);
+}
+
+.plate--short {
+  width: 72%;
+}
+
+.plate.is-lifted {
+  transform: translateY(var(--lift));
+}
+
+.stack.is-complete .plate.is-lifted {
+  transform: translateY(calc(var(--lift) * 2.1));
+  transition-duration: 640ms;
+}
+
+.plate__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 100%;
+  padding-inline: calc(var(--ph) * 0.42) calc(var(--ph) * 0.38);
+  color: var(--bg);
+  text-decoration: none;
+  border-radius: inherit;
+}
+
+a.plate__link:focus-visible {
+  outline-offset: 3px;
+}
+
+.plate__label {
+  font-size: clamp(0.75rem, 0.55rem + 0.55vw, 1rem);
+  font-weight: 600;
+  font-stretch: 112%;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  transition: translate var(--d-2) var(--ease-out);
+}
+
+.plate__index {
+  font-size: var(--fs-index);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  opacity: 0.5;
+}
+
+a.plate__link:hover .plate__label {
+  translate: 6px 0;
+}
+
+/* The pin: positioned at the right end of the pinned plate. */
+.pin {
+  position: absolute;
+  right: 0;
+  top: calc(var(--top-pad) + (var(--ph) - var(--pin-h)) / 2);
+  width: var(--pin-len);
+  height: var(--pin-h);
+  pointer-events: none;
+  transform: translate(calc(-1 * var(--pin-x, 0px)), calc(var(--pin-i) * (var(--ph) + var(--pg))));
+  transition: transform 520ms var(--ease-lock);
+}
+
+.pin__body {
+  position: absolute;
+  inset: 0;
+  transition: transform 340ms var(--ease-lock);
+}
+
+.pin.is-lifted .pin__body {
+  transform: translateY(var(--lift));
+}
+
+.stack.is-complete .pin.is-lifted .pin__body {
+  transform: translateY(calc(var(--lift) * 2.1));
+  transition-duration: 640ms;
+}
+
+.pin__body::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: calc(var(--ph) * 0.95);
+  background: var(--red);
+  border-radius: 2px;
+}
+
+.pin__body::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--ph) * 0.9);
+  top: 50%;
+  width: calc(var(--ph) * 0.56);
+  height: calc(var(--ph) * 0.56);
+  margin-top: calc(var(--ph) * -0.28);
+  border: calc(var(--ph) * 0.15) solid var(--red);
+  border-radius: 50%;
+  box-sizing: border-box;
+}

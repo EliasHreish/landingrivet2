@@ -1,0 +1,138 @@
+/* ==========================================================================
+   01 · Hero
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100svh;
+  padding-block: calc(var(--header-h) + clamp(2.5rem, 6vh, 5rem)) clamp(3rem, 8vh, 6rem);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+  row-gap: 3.5rem;
+  align-items: center;
+}
+
+.hero__copy {
+  grid-column: 1 / 7;
+}
+
+.hero__stage {
+  grid-column: 7 / 13;
+  justify-self: end;
+  width: 100%;
+  max-width: 660px;
+}
+
+.hero__title {
+  margin-block: 1.5rem 1.75rem;
+}
+
+.hero__lede {
+  max-width: 29em;
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem 2rem;
+  margin-top: 2.25rem;
+}
+
+/* Masked lines for the headline reveal */
+.mask {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.06em 0.12em;
+  margin-block: -0.06em -0.12em;
+}
+
+.line {
+  display: block;
+}
+
+@media (max-width: 1023px) {
+  .hero {
+    min-height: 0;
+    padding-top: calc(var(--header-h) + 3rem);
+  }
+
+  .hero__copy,
+  .hero__stage {
+    grid-column: 1 / -1;
+  }
+
+  .hero__stage {
+    justify-self: start;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 599px) {
+  .hero__title {
+    margin-block: 1.25rem 1.5rem;
+  }
+
+  .hero__stage {
+    --ph: 42px;
+  }
+}
+
+/* Intro choreography — hidden states apply only when JS runs; the safety class
+   in <head> and reduced-motion both collapse this to "just show it". */
+
+.js:not(.no-anim) .hero .line { transform: translateY(110%); }
+.js:not(.no-anim) .hero [data-intro="fade"] { opacity: 0; }
+.js:not(.no-anim) .hero .plate { opacity: 0; transform: translateX(56px); }
+.js:not(.no-anim) .hero .pin { opacity: 0; translate: 48px 0; }
+.js:not(.no-anim) .hero .stack__rail { transform: scaleY(0); transform-origin: top; }
+
+.js.is-ready .hero .line {
+  transform: none;
+  transition: transform 1000ms var(--ease-out) var(--delay, 0ms);
+}
+
+.js.is-ready .hero [data-intro="fade"] {
+  opacity: 1;
+  transition: opacity 700ms var(--ease-out) var(--delay, 0ms);
+}
+
+.js.is-ready .hero .plate {
+  opacity: 1;
+  transform: none;
+  transition:
+    transform 860ms var(--ease-out) calc(240ms + var(--i) * 70ms),
+    opacity 480ms var(--ease-out) calc(240ms + var(--i) * 70ms);
+}
+
+.js.is-ready .hero .pin {
+  opacity: 1;
+  translate: 0 0;
+  transition: translate 560ms var(--ease-lock) 980ms, opacity 200ms linear 980ms;
+}
+
+.js.is-ready .hero .stack__rail {
+  transform: none;
+  transition: transform 1000ms var(--ease-out) 120ms;
+}
+
+/* After the intro, plates and pin take the ordinary interaction timings. */
+.js.intro-done .hero .plate {
+  transition: transform 340ms var(--ease-lock), translate 320ms var(--ease-lock);
+}
+
+.js.intro-done .hero .pin {
+  transition: translate 320ms var(--ease-lock);
+}
+
+/* The lock: pin in, the whole stack tugs once. */
+.hero .stack.is-locked .plate,
+.hero .stack.is-locked .pin {
+  translate: 0 -7px;
+}

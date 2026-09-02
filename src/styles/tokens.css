@@ -1,0 +1,80 @@
+/* ==========================================================================
+   RIVET — design tokens
+   Warm paper, near-black ink, charcoal surfaces, one signal red.
+   ========================================================================== */
+
+:root {
+  /* Colour ------------------------------------------------------------ */
+  --paper: #f3efe6;
+  --paper-2: #ebe6db;
+  --paper-3: #dfd9cb;
+  --ink: #0f0e0c;
+  --ink-2: #171614;
+  --charcoal: #1f1e1b;
+  --charcoal-2: #2a2925;
+  --charcoal-3: #3a3934;
+  --red: #ff3131;
+  --red-text: #c9221a;      /* red that passes AA as small text on paper */
+  --muted: #6b665d;
+  --muted-dark: #a9a49a;
+  --line: rgba(15, 14, 12, 0.14);
+  --line-2: rgba(15, 14, 12, 0.36);
+  --line-dark: rgba(243, 239, 230, 0.14);
+  --line-dark-2: rgba(243, 239, 230, 0.38);
+
+  /* Contextual surface tokens (re-mapped on dark scenes) ---------------- */
+  --bg: var(--paper);
+  --fg: var(--ink);
+  --fg-muted: var(--muted);
+  --rule: var(--line);
+  --rule-2: var(--line-2);
+
+  /* Type -------------------------------------------------------------- */
+  --font: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --fs-display: clamp(2.25rem, 0.75rem + 4.75vw, 5.1rem);
+  --fs-h2: clamp(1.875rem, 1.05rem + 2.7vw, 3.5rem);
+  --fs-h3: clamp(1.375rem, 1.1rem + 0.95vw, 1.9375rem);
+  --fs-lede: clamp(1.0625rem, 0.98rem + 0.35vw, 1.25rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-label: 0.75rem;
+  --fs-index: 0.8125rem;
+
+  /* Layout ------------------------------------------------------------ */
+  --gutter: clamp(20px, 4.5vw, 72px);
+  --max: 1440px;
+  --col-gap: clamp(16px, 2vw, 32px);
+  --space-section: clamp(6rem, 9vw, 11rem);
+  --header-h: 76px;
+
+  /* Shape ------------------------------------------------------------- */
+  --r-1: 3px;
+  --r-2: 6px;
+  --r-sheet: 28px;
+
+  /* Motion ------------------------------------------------------------ */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout: cubic-bezier(0.7, 0, 0.2, 1);
+  --ease-lock: cubic-bezier(0.8, 0, 0.12, 1);
+  --d-1: 180ms;
+  --d-2: 280ms;
+  --d-3: 640ms;
+  --d-4: 900ms;
+
+  /* Layers ------------------------------------------------------------ */
+  --z-header: 40;
+  --z-menu: 60;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-h: 64px;
+    --r-sheet: 20px;
+  }
+}
+
+@media (max-width: 599px) {
+  :root {
+    --fs-display: clamp(2.25rem, 0.5rem + 9.5vw, 2.75rem);
+  }
+}

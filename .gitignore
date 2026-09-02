@@ -1,6 +1,4 @@
-# OS
+node_modules
+dist
 .DS_Store
-
-# Local tooling
-node_modules/
-.claude/settings.local.json
+.claude/

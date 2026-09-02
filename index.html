@@ -1,640 +1,424 @@
 <!doctype html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RIVET — Revenue and operations platform for gyms in Jordan and MENA</title>
-  <meta name="description" content="RIVET connects sales, memberships, payments, reception, daily operations and member activity in one accountable system. Built for gyms in Jordan and the MENA region.">
-  <meta name="theme-color" content="#F4F0E8">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="RIVET — Every dinar. Every door. One system.">
-  <meta property="og:description" content="The revenue and operations platform for gyms in Jordan and the MENA region.">
-  <meta property="og:locale" content="en_JO">
-  <meta property="og:locale:alternate" content="ar_JO">
-  <!-- Replace with the absolute URL of assets/og-image.png once deployed -->
-  <meta property="og:image" content="assets/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="assets/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/styles.css">
-  <script>document.documentElement.classList.add('js');</script>
-</head>
-<body>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>RIVET — Run the whole gym from one place</title>
+    <meta
+      name="description"
+      content="RIVET is the revenue and operations platform for gyms in Jordan and the region. Sales, memberships, payments, reception and daily operations in one accountable system."
+    />
+    <meta name="theme-color" content="#f3efe6" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="RIVET" />
+    <meta property="og:title" content="RIVET — Run the whole gym from one place" />
+    <meta
+      property="og:description"
+      content="The revenue and operations platform for gyms in Jordan and the region. Every sale, payment, check-in and follow-up in one accountable system."
+    />
+    <!-- Social card: set your production origin here once the site has a domain, e.g. https://rivet.example/og.png -->
+    <meta property="og:image" content="/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <script>
+      (function () {
+        var d = document.documentElement;
+        d.classList.remove("no-js");
+        d.classList.add("js");
+        /* Safety net: if the app script never runs, show everything. */
+        window.__rivetSafety = setTimeout(function () {
+          d.classList.add("no-anim", "is-ready", "intro-done");
+        }, 3000);
+      })();
+    </script>
+    <script type="module" src="/src/js/main.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
 
-<svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute">
-  <symbol id="rivet-glyph" viewBox="0 0 1846 2901">
-    <g fill="currentColor">
-      <rect x="0" y="0" width="174" height="2901" rx="30"/>
-      <rect x="0" y="0" width="1126" height="191" rx="30"/>
-      <rect x="966" y="0" width="160" height="610" rx="30"/>
-      <rect x="483" y="830" width="707" height="240" rx="30"/>
-      <rect x="483" y="1092" width="707" height="240" rx="30"/>
-      <rect x="483" y="1353" width="707" height="240" rx="30"/>
-      <rect x="483" y="1615" width="707" height="240" rx="30"/>
-      <rect x="483" y="1876" width="1102" height="240" rx="30"/>
-      <rect x="463" y="2137" width="1120" height="240" rx="30"/>
-      <rect x="463" y="2399" width="1120" height="240" rx="30"/>
-      <rect x="463" y="2661" width="1120" height="240" rx="30"/>
-    </g>
-    <g fill="#FF3131">
-      <rect x="1586" y="1954" width="180" height="82"/>
-      <circle cx="1759.5" cy="1995" r="61.75" fill="none" stroke="#FF3131" stroke-width="49.5"/>
-    </g>
-  </symbol>
-</svg>
-
-<a class="skip" href="#main">Skip to content</a>
-
-<header class="header" data-header data-on="paper">
-  <a class="brand" href="#top" aria-label="RIVET, back to top">
-    <svg class="brand__glyph" aria-hidden="true" focusable="false"><use href="#rivet-glyph"/></svg>
-    <span class="brand__word">RIVET</span>
-  </a>
-  <div class="header__right">
-    <a class="header__cta link" href="#contact">Book a walkthrough</a>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" data-menu-btn>
-      <span class="menu-btn__pin" aria-hidden="true"></span>
-      <span class="menu-btn__label" data-label>Menu</span>
-      <span class="menu-btn__idx" aria-hidden="true">01–06</span>
-    </button>
-  </div>
-</header>
-
-<div class="nav" id="nav" aria-hidden="true" data-nav>
-  <div class="nav__scrim" data-nav-scrim></div>
-  <div class="nav__plate">
-    <nav class="nav__primary" aria-label="Sections">
-      <ol class="nav__list">
-        <li style="--i:0"><a class="nav__link" href="#pieces"><span class="nav__idx">01</span><span class="nav__mask"><span class="nav__label">In pieces</span></span></a></li>
-        <li style="--i:1"><a class="nav__link" href="#stack"><span class="nav__idx">02</span><span class="nav__mask"><span class="nav__label">The stack</span></span></a></li>
-        <li style="--i:2"><a class="nav__link" href="#modules"><span class="nav__idx">03</span><span class="nav__mask"><span class="nav__label">Modules</span></span></a></li>
-        <li style="--i:3"><a class="nav__link" href="#day"><span class="nav__idx">04</span><span class="nav__mask"><span class="nav__label">A day</span></span></a></li>
-        <li style="--i:4"><a class="nav__link" href="#accountability"><span class="nav__idx">05</span><span class="nav__mask"><span class="nav__label">Accountability</span></span></a></li>
-        <li style="--i:5"><a class="nav__link" href="#here"><span class="nav__idx">06</span><span class="nav__mask"><span class="nav__label">Built for here</span></span></a></li>
-      </ol>
-    </nav>
-    <div class="nav__meta">
-      <div class="nav__meta-col">
-        <span class="t-meta nav__meta-k">Contact</span>
-        <a class="link nav__meta-v" href="mailto:hello@rivet.jo">hello@rivet.jo</a>
-      </div>
-      <div class="nav__meta-col">
-        <span class="t-meta nav__meta-k">Based in</span>
-        <span class="nav__meta-v">Amman, Jordan</span>
-      </div>
-      <div class="nav__meta-col">
-        <span class="t-meta nav__meta-k">Interface</span>
-        <span class="nav__meta-v">English · <span lang="ar">العربية</span></span>
-      </div>
-      <a class="btn btn--paper nav__btn" href="#contact">Book a walkthrough</a>
-    </div>
-  </div>
-</div>
-
-<main id="main" class="page">
-
-  <!-- 00 — HERO -->
-  <section class="hero" id="top" data-theme="paper" data-hero>
-    <div class="hero__inner wrap">
-      <div class="hero__top">
-        <p class="t-meta hero__eyebrow">Revenue &amp; operations platform for gyms</p>
-        <p class="t-meta hero__eyebrow hero__eyebrow--right">Amman, Jordan · For the MENA region</p>
-      </div>
-
-      <div class="hero__body">
-        <h1 class="t-display-xl hero__title">
-          <span class="line"><span>Every dinar.</span></span>
-          <span class="line"><span>Every door.</span></span>
-          <span class="line"><span>One system<span class="pin-dot" aria-hidden="true"></span><span class="sr-only">.</span></span></span>
-        </h1>
-
-        <p class="t-body-l hero__lead">RIVET connects sales, memberships, payments, reception, daily operations and member activity in one accountable system. Built for gyms in Jordan and the region, for the way they actually run.</p>
-
-        <div class="hero__actions">
-          <a class="btn" href="#contact">Book a walkthrough</a>
-          <a class="link" href="#stack">How it works</a>
-        </div>
-
-        <div class="hero__figure" aria-hidden="true">
-          <svg class="hero__glyph" viewBox="0 0 1846 2901" focusable="false">
-            <g class="g-frame" fill="currentColor">
-              <rect x="0" y="0" width="174" height="2901" rx="30"/>
-              <rect x="0" y="0" width="1126" height="191" rx="30"/>
-              <rect x="966" y="0" width="160" height="610" rx="30"/>
+    <!-- Brand symbols: glyph geometry from the RIVET mark, wordmark traced from the source lockup. -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <symbol id="rivet-glyph" viewBox="0 0 1846 2901">
+          <g fill="currentColor">
+            <rect x="0" y="0" width="174" height="2901" rx="30" />
+            <rect x="0" y="0" width="1126" height="191" rx="30" />
+            <rect x="966" y="0" width="160" height="610" rx="30" />
+            <rect x="483" y="830" width="707" height="240" rx="30" />
+            <rect x="483" y="1092" width="707" height="240" rx="30" />
+            <rect x="483" y="1353" width="707" height="240" rx="30" />
+            <rect x="483" y="1615" width="707" height="240" rx="30" />
+            <rect x="483" y="1876" width="1102" height="240" rx="30" />
+            <rect x="463" y="2137" width="1120" height="240" rx="30" />
+            <rect x="463" y="2399" width="1120" height="240" rx="30" />
+            <rect x="463" y="2661" width="1120" height="240" rx="30" />
+          </g>
+          <g fill="#ff3131">
+            <rect x="1586" y="1954" width="180" height="82" />
+            <circle cx="1759.5" cy="1995" r="61.75" fill="none" stroke="#ff3131" stroke-width="49.5" />
+          </g>
+        </symbol>
+        <symbol id="rivet-lockup" viewBox="0 0 3418 846">
+          <g transform="scale(0.29162)">
+            <g fill="currentColor">
+              <rect x="0" y="0" width="174" height="2901" rx="30" />
+              <rect x="0" y="0" width="1126" height="191" rx="30" />
+              <rect x="966" y="0" width="160" height="610" rx="30" />
+              <rect x="483" y="830" width="707" height="240" rx="30" />
+              <rect x="483" y="1092" width="707" height="240" rx="30" />
+              <rect x="483" y="1353" width="707" height="240" rx="30" />
+              <rect x="483" y="1615" width="707" height="240" rx="30" />
+              <rect x="483" y="1876" width="1102" height="240" rx="30" />
+              <rect x="463" y="2137" width="1120" height="240" rx="30" />
+              <rect x="463" y="2399" width="1120" height="240" rx="30" />
+              <rect x="463" y="2661" width="1120" height="240" rx="30" />
             </g>
-            <g class="g-plates" fill="currentColor">
-              <rect class="g-plate" style="--i:0" x="483" y="830" width="707" height="240" rx="30"/>
-              <rect class="g-plate" style="--i:1" x="483" y="1092" width="707" height="240" rx="30"/>
-              <rect class="g-plate" style="--i:2" x="483" y="1353" width="707" height="240" rx="30"/>
-              <rect class="g-plate" style="--i:3" x="483" y="1615" width="707" height="240" rx="30"/>
-              <rect class="g-plate" style="--i:4" x="483" y="1876" width="1102" height="240" rx="30"/>
-              <rect class="g-plate" style="--i:5" x="463" y="2137" width="1120" height="240" rx="30"/>
-              <rect class="g-plate" style="--i:6" x="463" y="2399" width="1120" height="240" rx="30"/>
-              <rect class="g-plate" style="--i:7" x="463" y="2661" width="1120" height="240" rx="30"/>
+            <g fill="#ff3131">
+              <rect x="1586" y="1954" width="180" height="82" />
+              <circle cx="1759.5" cy="1995" r="61.75" fill="none" stroke="#ff3131" stroke-width="49.5" />
             </g>
-            <g class="g-pin" fill="#FF3131">
-              <rect x="1586" y="1954" width="180" height="82"/>
-              <circle cx="1759.5" cy="1995" r="61.75" fill="none" stroke="#FF3131" stroke-width="49.5"/>
-            </g>
-          </svg>
+          </g>
+          <g transform="translate(584 66)">
+            <path fill="currentColor" d="M 140 426 L 140 650 189 650 L 238 650 238 578.488 L 238 506.977 277.231 507.238 L 316.463 507.500 363.993 578.500 L 411.524 649.500 469.391 649.758 C 515.776 649.965, 527.060 649.767, 526.261 648.758 C 523.405 645.158, 418.941 491.774, 418.739 490.884 C 418.607 490.308, 422.775 487.923, 428 485.584 C 465.353 468.860, 493.545 439.475, 505.312 405 C 515.720 374.506, 515.947 328.765, 505.844 298 C 487.886 243.318, 437.021 208.274, 368 203.030 C 359.967 202.420, 311.066 202.004, 247.250 202.002 L 140 202 140 426 M 799 426 L 799 650 848.500 650 L 898 650 898 426 L 898 202 848.500 202 L 799 202 799 426 M 1168.682 215.742 C 1173.474 227.691, 1342.369 648.422, 1343.710 651.750 C 1344.102 652.723, 1353.884 653, 1387.885 653 L 1431.557 653 1521.778 428.182 C 1571.400 304.531, 1612 203.056, 1612 202.682 C 1612 202.307, 1588.218 202, 1559.150 202 L 1506.300 202 1447.987 359 C 1415.915 445.350, 1389.410 515.997, 1389.087 515.993 C 1388.764 515.990, 1362.347 445.452, 1330.382 359.243 L 1272.264 202.500 1217.715 202.242 L 1163.165 201.983 1168.682 215.742 M 1874 426 L 1874 650 2044.500 650 L 2215 650 2215 606 L 2215 562 2093.500 562 L 1972 562 1972 515 L 1972 468 2077.500 468 L 2183 468 2183 424.500 L 2183 381 2077.500 381 L 1972 381 1972 335.504 L 1972 290.008 2091.750 289.754 L 2211.500 289.500 2211.761 245.750 L 2212.021 202 2043.011 202 L 1874 202 1874 426 M 2462.240 247.250 L 2462.500 292.500 2530.750 292.757 L 2599 293.014 2599 471.507 L 2599 650 2648 650 L 2697 650 2697 471.507 L 2697 293.014 2765.250 292.757 L 2833.500 292.500 2833.760 247.250 L 2834.020 202 2648 202 L 2461.980 202 2462.240 247.250 M 238 354.986 L 238 419.101 298.250 418.765 C 356.762 418.439, 358.731 418.366, 366.500 416.222 C 390.598 409.572, 406.787 393.881, 412.123 372 C 414.034 364.163, 413.729 344.121, 411.576 336.080 C 406.584 317.435, 394.658 304.675, 375.476 297.455 C 360.287 291.737, 360.201 291.731, 296.750 291.284 L 238 290.871 238 354.986" />
+          </g>
+        </symbol>
+      </defs>
+    </svg>
+
+    <header class="site-header" data-theme="light">
+      <div class="site-header__inner">
+        <a class="brand" href="#top" aria-label="RIVET — back to top">
+          <svg class="brand__lockup" aria-hidden="true" focusable="false"><use href="#rivet-lockup" /></svg>
+        </a>
+        <div class="site-header__right">
+          <a class="link link--quiet site-header__cta" href="#contact">Book a walkthrough</a>
+          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">
+            <span class="menu-toggle__words" aria-hidden="true">
+              <span class="menu-toggle__word">Menu</span>
+              <span class="menu-toggle__word">Close</span>
+            </span>
+            <span class="sr-only js-toggle-label">Open menu</span>
+            <span class="menu-toggle__glyph" aria-hidden="true"><i></i><i></i><i></i><b></b></span>
+          </button>
         </div>
       </div>
+    </header>
 
-      <div class="hero__index">
-        <ol class="hero__index-list t-meta" aria-label="What RIVET covers">
-          <li><span class="idx">01</span>Sales</li>
-          <li><span class="idx">02</span>Memberships</li>
-          <li><span class="idx">03</span>Payments</li>
-          <li><span class="idx">04</span>Reception</li>
-          <li><span class="idx">05</span>Operations</li>
-          <li><span class="idx">06</span>Member activity</li>
+    <!-- Navigation sheet: an ink sheet slides over the page; the page recedes behind it. -->
+    <div class="menu" id="menu">
+      <div class="menu__backdrop" data-menu-close></div>
+      <nav class="menu__sheet" aria-label="Main">
+        <p class="menu__eyebrow label">Menu</p>
+        <ol class="menu__list">
+          <li class="menu__item" style="--i: 0">
+            <a class="menu__link" href="#journey">
+              <span class="menu__index">01</span>
+              <span class="menu__mask"><span class="menu__label">The journey</span></span>
+            </a>
+          </li>
+          <li class="menu__item" style="--i: 1">
+            <a class="menu__link" href="#accountability">
+              <span class="menu__index">02</span>
+              <span class="menu__mask"><span class="menu__label">Accountability</span></span>
+            </a>
+          </li>
+          <li class="menu__item" style="--i: 2">
+            <a class="menu__link" href="#floor">
+              <span class="menu__index">03</span>
+              <span class="menu__mask"><span class="menu__label">The floor</span></span>
+            </a>
+          </li>
+          <li class="menu__item" style="--i: 3">
+            <a class="menu__link" href="#region">
+              <span class="menu__index">04</span>
+              <span class="menu__mask"><span class="menu__label">Jordan &amp; MENA</span></span>
+            </a>
+          </li>
+          <li class="menu__item" style="--i: 4">
+            <a class="menu__link" href="#contact">
+              <span class="menu__index">05</span>
+              <span class="menu__mask"><span class="menu__label">Book a walkthrough</span></span>
+            </a>
+          </li>
         </ol>
-        <span class="t-meta hero__scroll" aria-hidden="true">Scroll</span>
-      </div>
+        <div class="menu__foot">
+          <p>Revenue &amp; operations platform for gyms</p>
+          <p>Amman, Jordan</p>
+        </div>
+      </nav>
     </div>
-  </section>
 
-  <!-- 01 — IN PIECES -->
-  <section class="pieces" id="pieces" data-theme="paper" data-cover>
-    <div class="wrap">
-      <div class="sec-head" data-reveal>
-        <span class="sec-head__idx t-meta">01</span>
-        <span class="sec-head__pin" aria-hidden="true"></span>
-        <span class="sec-head__label t-meta">In pieces</span>
-      </div>
-
-      <div class="grid">
-        <h2 class="t-display-l pieces__title" data-reveal>
-          <span class="line"><span>Most gyms don’t run on a system.</span></span>
-          <span class="line"><span>They run on a group chat,</span></span>
-          <span class="line"><span>a notebook, and a drawer.</span></span>
-        </h2>
-      </div>
-
-      <ol class="pieces__list" data-reveal data-reveal-stagger>
-        <li class="piece" style="--tilt:-1.6deg; --shift:0%; --w:4">
-          <span class="piece__plate"><span class="idx">01</span><span>Sales</span></span>
-          <span class="piece__where t-display-m">in a WhatsApp thread</span>
-        </li>
-        <li class="piece" style="--tilt:1.1deg; --shift:5%; --w:3">
-          <span class="piece__plate"><span class="idx">02</span><span>Memberships</span></span>
-          <span class="piece__where t-display-m">in a notebook at the desk</span>
-        </li>
-        <li class="piece" style="--tilt:-0.7deg; --shift:2%; --w:4">
-          <span class="piece__plate"><span class="idx">03</span><span>Payments</span></span>
-          <span class="piece__where t-display-m">in the drawer</span>
-        </li>
-        <li class="piece" style="--tilt:1.9deg; --shift:8%; --w:3">
-          <span class="piece__plate"><span class="idx">04</span><span>Reception</span></span>
-          <span class="piece__where t-display-m">on a whiteboard</span>
-        </li>
-        <li class="piece" style="--tilt:-1.3deg; --shift:4%; --w:4">
-          <span class="piece__plate"><span class="idx">05</span><span>Operations</span></span>
-          <span class="piece__where t-display-m">in whoever is on shift</span>
-        </li>
-        <li class="piece" style="--tilt:0.9deg; --shift:11%; --w:3">
-          <span class="piece__plate"><span class="idx">06</span><span>Member activity</span></span>
-          <span class="piece__where t-display-m">nobody is counting</span>
-        </li>
-      </ol>
-
-      <div class="grid">
-        <p class="t-body-l pieces__close" data-reveal><span class="wipe">None of this is wrong on a Tuesday. It goes wrong at the end of the month, when none of it agrees.</span></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 02 — THE STACK (signature) -->
-  <section class="stack" id="stack" data-theme="dark">
-    <div class="stack__track" data-scrub="stack">
-      <div class="stack__stage">
-        <div class="wrap stack__grid">
-          <div class="sec-head sec-head--stage">
-            <span class="sec-head__idx t-meta">02</span>
-            <span class="sec-head__pin" aria-hidden="true"></span>
-            <span class="sec-head__label t-meta">The stack</span>
-          </div>
-
-          <div class="stack__figure" aria-hidden="true">
-            <div class="rig" data-rig>
-              <div class="rig__rod"></div>
-              <div class="rig__bar"></div>
-              <div class="rig__return"></div>
-              <ol class="rig__plates" data-rig-plates>
-                <li class="rig__plate" style="--i:0" data-name="Sales"><span class="idx">01</span><span>Sales</span></li>
-                <li class="rig__plate" style="--i:1" data-name="Memberships"><span class="idx">02</span><span>Memberships</span></li>
-                <li class="rig__plate" style="--i:2" data-name="Payments"><span class="idx">03</span><span>Payments</span></li>
-                <li class="rig__plate" style="--i:3" data-name="Reception"><span class="idx">04</span><span>Reception</span></li>
-                <li class="rig__plate" style="--i:4" data-name="Operations"><span class="idx">05</span><span>Operations</span></li>
-                <li class="rig__plate" style="--i:5" data-name="Member activity"><span class="idx">06</span><span>Member activity</span></li>
-              </ol>
-              <div class="rig__pin" data-rig-pin>
-                <span class="rig__pin-rod"></span>
-                <span class="rig__pin-ring"></span>
+    <div class="page">
+      <main id="main">
+        <!-- 01 · HERO ------------------------------------------------------- -->
+        <section class="hero" id="top" aria-labelledby="hero-title">
+          <div class="container hero__grid">
+            <div class="hero__copy">
+              <p class="label label--pin" data-intro="fade" style="--delay: 60ms">Gym management · Jordan &amp; MENA</p>
+              <h1 id="hero-title" class="display hero__title">
+                <span class="mask"><span class="line" style="--delay: 120ms">Run the</span></span>
+                <span class="mask"><span class="line" style="--delay: 200ms">whole gym</span></span>
+                <span class="mask"><span class="line" style="--delay: 280ms">from one place.</span></span>
+              </h1>
+              <p class="lede hero__lede" data-intro="fade" style="--delay: 420ms">
+                RIVET connects every sale, payment, check-in and follow-up in one accountable system. The gym runs the same way whether or not you're in the building.
+              </p>
+              <div class="hero__actions" data-intro="fade" style="--delay: 540ms">
+                <a class="btn" href="#contact">Book a walkthrough</a>
+                <a class="link link--quiet" href="#journey">See how it connects</a>
               </div>
             </div>
-            <p class="rig__readout t-meta"><span data-readout>Loose · 00 / 06</span></p>
+
+            <nav class="stack stack--hero hero__stage" aria-label="What RIVET runs" style="--pin-i: 5">
+              <span class="stack__rail" aria-hidden="true"></span>
+              <ol class="stack__plates">
+                <li class="plate plate--short" style="--i: 0"><a class="plate__link" href="#step-sales"><span class="plate__label">Sales</span><span class="plate__index">01</span></a></li>
+                <li class="plate plate--short" style="--i: 1"><a class="plate__link" href="#step-memberships"><span class="plate__label">Memberships</span><span class="plate__index">02</span></a></li>
+                <li class="plate plate--short" style="--i: 2"><a class="plate__link" href="#step-payments"><span class="plate__label">Payments</span><span class="plate__index">03</span></a></li>
+                <li class="plate" style="--i: 3"><a class="plate__link" href="#step-reception"><span class="plate__label">Reception</span><span class="plate__index">04</span></a></li>
+                <li class="plate" style="--i: 4"><a class="plate__link" href="#step-operations"><span class="plate__label">Operations</span><span class="plate__index">05</span></a></li>
+                <li class="plate" style="--i: 5"><a class="plate__link" href="#step-members"><span class="plate__label">Members</span><span class="plate__index">06</span></a></li>
+              </ol>
+              <span class="pin" aria-hidden="true"><span class="pin__body"></span></span>
+            </nav>
           </div>
+        </section>
 
-          <div class="stack__copy">
-            <div class="stack__state is-active" data-state="0">
-              <h2 class="t-display-l">Six plates.<br>One pin.</h2>
-              <p class="t-body-l">A weight stack only works because one pin turns loose plates into a single load. RIVET does that to a gym.</p>
+        <!-- 02 · WHY --------------------------------------------------------- -->
+        <section class="scene scene--define" id="why" aria-labelledby="why-title">
+          <div class="container grid">
+            <p class="label define__label" data-reveal="fade">Why RIVET</p>
+            <div class="define__main">
+              <h2 id="why-title" class="h2" data-reveal="mask"><span class="mask-in">Most gyms run on a spreadsheet, a WhatsApp group and someone's memory.</span></h2>
+              <p class="lede" data-reveal="fade" style="--reveal-delay: 180ms">
+                Sales sit in one place, payments in another, and the front desk in a notebook. When something slips, nobody can say who was responsible. RIVET puts the whole operation in one system, where every action has a record and a name on it.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 03 · THE JOURNEY (signature) ------------------------------------- -->
+        <section class="scene scene--journey" id="journey" aria-labelledby="journey-title">
+          <div class="container journey__grid">
+            <div class="journey__head">
+              <p class="label" data-reveal="fade">01 · The journey</p>
+              <h2 id="journey-title" class="h2" data-reveal="mask"><span class="mask-in">From first lead to loyal member.</span></h2>
+              <p class="lede journey__lede" data-reveal="fade" style="--reveal-delay: 160ms">
+                Six parts of the business that usually live in six different tools. In RIVET they're one stack. Scroll to see how the pin connects them.
+              </p>
             </div>
 
-            <div class="stack__state" data-state="1">
-              <span class="t-meta stack__plate-idx">Plate 01 / 06</span>
-              <h3 class="t-display-m">Sales</h3>
-              <p class="t-body-l">From the first walk-in to a signed membership, every step carries the name of the person who handled it.</p>
-              <ul class="stack__caps t-meta">
-                <li>Leads, trials, follow-ups</li>
-                <li>Conversion by staff member</li>
-                <li>Nothing lives in a chat</li>
-              </ul>
+            <div class="journey__stage">
+              <div class="stack stack--journey" aria-hidden="true" style="--pin-i: 0">
+                <span class="stack__rail"></span>
+                <ol class="stack__plates">
+                  <li class="plate plate--short is-lifted" data-name="Sales"><span class="plate__link"><span class="plate__label">Sales</span><span class="plate__index">01</span></span></li>
+                  <li class="plate plate--short" data-name="Memberships"><span class="plate__link"><span class="plate__label">Memberships</span><span class="plate__index">02</span></span></li>
+                  <li class="plate plate--short" data-name="Payments"><span class="plate__link"><span class="plate__label">Payments</span><span class="plate__index">03</span></span></li>
+                  <li class="plate" data-name="Reception"><span class="plate__link"><span class="plate__label">Reception</span><span class="plate__index">04</span></span></li>
+                  <li class="plate" data-name="Operations"><span class="plate__link"><span class="plate__label">Operations</span><span class="plate__index">05</span></span></li>
+                  <li class="plate" data-name="Members"><span class="plate__link"><span class="plate__label">Members</span><span class="plate__index">06</span></span></li>
+                </ol>
+                <span class="pin is-lifted"><span class="pin__body"></span></span>
+              </div>
+              <p class="journey__status"><span class="label">Pinned at</span> <span class="journey__status-value">01 · Sales</span></p>
             </div>
 
-            <div class="stack__state" data-state="2">
-              <span class="t-meta stack__plate-idx">Plate 02 / 06</span>
-              <h3 class="t-display-m">Memberships</h3>
-              <p class="t-body-l">Plans, renewals, freezes, upgrades and family memberships, with expiries the desk actually sees.</p>
-              <ul class="stack__caps t-meta">
-                <li>Plans and renewals</li>
-                <li>Freezes and transfers</li>
-                <li>Access ends when the plan ends</li>
-              </ul>
+            <ol class="journey__steps">
+              <li class="step is-active" id="step-sales" data-step="1">
+                <p class="step__meta"><span class="step__index">01</span><span class="label">Sales</span></p>
+                <h3 class="h3">A lead walks in, calls, or messages.</h3>
+                <p class="body">It gets a name, an owner and a follow-up date. No lead sits in a phone nobody checks.</p>
+              </li>
+              <li class="step" id="step-memberships" data-step="2">
+                <p class="step__meta"><span class="step__index">02</span><span class="label">Memberships</span></p>
+                <h3 class="h3">The sale becomes a plan, not a promise.</h3>
+                <p class="body">Start date, price, term and freezes in one record the whole team can see. What was agreed at the desk is what the system enforces.</p>
+              </li>
+              <li class="step" id="step-payments" data-step="3">
+                <p class="step__meta"><span class="step__index">03</span><span class="label">Payments</span></p>
+                <h3 class="h3">Every dinar is tied to the member who paid it.</h3>
+                <p class="body">Cash, card or transfer, recorded at the desk and reconciled at close. Outstanding balances are visible, not remembered.</p>
+              </li>
+              <li class="step" id="step-reception" data-step="4">
+                <p class="step__meta"><span class="step__index">04</span><span class="label">Reception</span></p>
+                <h3 class="h3">One scan tells the desk everything.</h3>
+                <p class="body">Active or expired, paid or owing, who is inside right now. The front desk answers in a second instead of calling the owner.</p>
+              </li>
+              <li class="step" id="step-operations" data-step="5">
+                <p class="step__meta"><span class="step__index">05</span><span class="label">Operations</span></p>
+                <h3 class="h3">The day runs on a list, not on memory.</h3>
+                <p class="body">Shifts, renewals due, freezes ending, tasks assigned. Every task has an owner and a done state, and the manager sees what didn't get done.</p>
+              </li>
+              <li class="step" id="step-members" data-step="6">
+                <p class="step__meta"><span class="step__index">06</span><span class="label">Members</span></p>
+                <h3 class="h3">See who's slipping before they leave.</h3>
+                <p class="body">Visits, streaks and absences per member. Reach out while there's still time, with the history in front of you.</p>
+              </li>
+              <li class="step step--end" data-step="7">
+                <p class="h2 step__payoff">Pinned at the bottom, the whole stack moves as one.</p>
+                <p class="body">That's RIVET. A sale at the desk, a payment, a check-in and a follow-up are the same record, and every part of the gym lifts together.</p>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- 04 · ACCOUNTABILITY (charcoal sheet) ----------------------------- -->
+        <section class="scene scene--dark sheet" id="accountability" aria-labelledby="acc-title" data-scene-theme="dark">
+          <div class="container grid">
+            <div class="acc__copy">
+              <p class="label" data-reveal="fade">02 · Accountability</p>
+              <h2 id="acc-title" class="h2" data-reveal="mask"><span class="mask-in">Every action has a name on it.</span></h2>
+              <p class="lede" data-reveal="fade" style="--reveal-delay: 160ms">
+                Who sold the membership. Who took the cash. Who approved the freeze. RIVET records it as it happens, so end of day isn't an argument and month end isn't an investigation.
+              </p>
+              <p class="body muted acc__second" data-reveal="fade" style="--reveal-delay: 260ms">
+                Owners see the full picture. Staff see what they need for their job. Nothing gets deleted quietly.
+              </p>
+            </div>
+            <figure class="ledger acc__figure">
+              <ol class="ledger__rows" data-reveal="rows">
+                <li class="ledger__row"><span class="ledger__time">09:14</span><span class="ledger__event">Lead created</span><span class="ledger__owner">Sales</span></li>
+                <li class="ledger__row"><span class="ledger__time">09:31</span><span class="ledger__event">Trial booked <small>Thursday</small></span><span class="ledger__owner">Sales</span></li>
+                <li class="ledger__row"><span class="ledger__time">10:05</span><span class="ledger__event">Membership sold <small>12 months</small></span><span class="ledger__owner">Reception</span></li>
+                <li class="ledger__row"><span class="ledger__time">10:06</span><span class="ledger__event">Payment recorded <small>Cash</small></span><span class="ledger__owner">Reception</span></li>
+                <li class="ledger__row"><span class="ledger__time">13:40</span><span class="ledger__event">Freeze approved <small>2 weeks</small></span><span class="ledger__owner">Manager</span></li>
+                <li class="ledger__row"><span class="ledger__time">17:00</span><span class="ledger__event">Renewal reminder sent</span><span class="ledger__owner">System</span></li>
+                <li class="ledger__row is-live"><span class="ledger__time">18:22</span><span class="ledger__event">Check-in</span><span class="ledger__owner">Reception</span></li>
+              </ol>
+              <figcaption class="ledger__caption" data-reveal="fade" style="--reveal-delay: 500ms">Illustrative record. Every entry carries a time and an owner.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- 05 · THE FLOOR --------------------------------------------------- -->
+        <section class="scene scene--floor" id="floor" aria-labelledby="floor-title">
+          <div class="container">
+            <div class="grid">
+              <div class="floor__copy">
+                <p class="label" data-reveal="fade">03 · The floor</p>
+                <h2 id="floor-title" class="h2" data-reveal="mask"><span class="mask-in">The desk sees everything the system knows.</span></h2>
+                <p class="lede" data-reveal="fade" style="--reveal-delay: 160ms">
+                  Check-ins, expiries, balances, class lists and today's tasks, on the screen the receptionist already has open. When you're not in the building, the gym runs the same way.
+                </p>
+              </div>
             </div>
 
-            <div class="stack__state" data-state="3">
-              <span class="t-meta stack__plate-idx">Plate 03 / 06</span>
-              <h3 class="t-display-m">Payments</h3>
-              <p class="t-body-l">Cash, card, CliQ and installments, with a receipt for every dinar and a balance for every member.</p>
-              <ul class="stack__caps t-meta">
-                <li>Cash, card, CliQ, installments</li>
-                <li>Receipts and outstanding balances</li>
-                <li>Drawer reconciled every shift</li>
-              </ul>
-            </div>
+            <figure class="dayline" aria-label="A gym day in RIVET, illustrated" data-reveal="bands">
+              <div class="dayline__track">
+                <div class="dayline__ticks" aria-hidden="true"></div>
+                <div class="dayline__rail" aria-hidden="true"></div>
+                <span class="dayline__band" style="--from: 7; --to: 9.5"><span>Morning peak</span></span>
+                <span class="dayline__band" style="--from: 17.5; --to: 21"><span>Evening peak</span></span>
+                <span class="dayline__now" aria-hidden="true"><span class="dayline__pin"></span></span>
+                <ol class="dayline__marks">
+                  <li style="--h: 6"><b>06:00</b><span>Open. Checklist done.</span></li>
+                  <li style="--h: 12"><b>12:00</b><span>Renewals due today, assigned.</span></li>
+                  <li style="--h: 18"><b>18:00</b><span>Class attendance taken.</span></li>
+                  <li style="--h: 23"><b>23:00</b><span>Close. Cash reconciled.</span></li>
+                </ol>
+              </div>
+              <figcaption class="dayline__caption">One day on the floor. The red pin is now.</figcaption>
+            </figure>
+          </div>
+        </section>
 
-            <div class="stack__state" data-state="4">
-              <span class="t-meta stack__plate-idx">Plate 04 / 06</span>
-              <h3 class="t-display-m">Reception</h3>
-              <p class="t-body-l">Check-in, who is inside right now, front-desk sales and a proper handover between shifts.</p>
-              <ul class="stack__caps t-meta">
-                <li>Check-in and access</li>
-                <li>Front-desk sales and top-ups</li>
-                <li>Shift open, shift close</li>
-              </ul>
+        <!-- 06 · JORDAN & MENA ------------------------------------------------ -->
+        <section class="scene scene--region" id="region" aria-labelledby="region-title">
+          <div class="container grid">
+            <div class="region__copy">
+              <p class="label" data-reveal="fade">04 · Jordan &amp; MENA</p>
+              <h2 id="region-title" class="h2" data-reveal="mask"><span class="mask-in">Built in Amman, for how gyms here actually run.</span></h2>
+              <p class="lede" data-reveal="fade" style="--reveal-delay: 160ms">
+                Not a template from another market. RIVET is built around the realities of this one, priced in dinars, with people you can actually call.
+              </p>
             </div>
+            <ul class="realities region__list" data-reveal="rows">
+              <li><span class="index">01</span><p>Cash is still king at the front desk.</p></li>
+              <li><span class="index">02</span><p>Memberships are sold in a walk-in conversation, not a checkout page.</p></li>
+              <li><span class="index">03</span><p>Hours change in Ramadan. So do the peaks.</p></li>
+              <li><span class="index">04</span><p>Families and friends sign up together.</p></li>
+              <li><span class="index">05</span><p>Teams work in Arabic and English, often in the same shift.</p></li>
+            </ul>
+          </div>
+        </section>
 
-            <div class="stack__state" data-state="5">
-              <span class="t-meta stack__plate-idx">Plate 05 / 06</span>
-              <h3 class="t-display-m">Operations</h3>
-              <p class="t-body-l">Staff, shifts, classes, trainers, maintenance and the daily close, in one place instead of five.</p>
-              <ul class="stack__caps t-meta">
-                <li>Staff, shifts and roles</li>
-                <li>Classes and capacity</li>
-                <li>The daily close</li>
-              </ul>
+        <!-- 07 · BOOK A WALKTHROUGH (ink sheet) ------------------------------ -->
+        <section class="scene scene--cta sheet sheet--end" id="contact" aria-labelledby="contact-title" data-scene-theme="dark">
+          <div class="container grid">
+            <div class="cta__copy">
+              <p class="label" data-reveal="fade">05 · Book a walkthrough</p>
+              <h2 id="contact-title" class="h2" data-reveal="mask"><span class="mask-in">See RIVET on your gym.</span></h2>
+              <p class="lede" data-reveal="fade" style="--reveal-delay: 160ms">
+                Thirty minutes with someone who knows how gyms run. Your numbers and your questions, not a demo account.
+              </p>
             </div>
+            <form class="form cta__form" novalidate data-endpoint="" data-reveal="fade" style="--reveal-delay: 240ms">
+              <div class="field">
+                <label for="f-gym">Gym name</label>
+                <input id="f-gym" name="gym" type="text" required autocomplete="organization" />
+                <span class="field__error" aria-live="polite"></span>
+              </div>
+              <div class="field">
+                <label for="f-name">Your name</label>
+                <input id="f-name" name="name" type="text" required autocomplete="name" />
+                <span class="field__error" aria-live="polite"></span>
+              </div>
+              <div class="field">
+                <label for="f-phone">Phone or WhatsApp</label>
+                <input id="f-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" />
+                <span class="field__error" aria-live="polite"></span>
+              </div>
+              <div class="field">
+                <label for="f-city">City</label>
+                <input id="f-city" name="city" type="text" autocomplete="address-level2" placeholder="Amman" />
+                <span class="field__error" aria-live="polite"></span>
+              </div>
+              <div class="field field--full">
+                <label for="f-size">Members</label>
+                <div class="select">
+                  <select id="f-size" name="members">
+                    <option value="" selected>Choose a range</option>
+                    <option value="under-300">Under 300</option>
+                    <option value="300-1000">300 to 1,000</option>
+                    <option value="over-1000">Over 1,000</option>
+                  </select>
+                </div>
+                <span class="field__error" aria-live="polite"></span>
+              </div>
+              <div class="form__actions">
+                <button class="btn btn--paper" type="submit">Book a walkthrough</button>
+                <p class="form__note">We'll get back to you within a working day.</p>
+              </div>
+              <p class="form__status" role="status" aria-live="polite" tabindex="-1"></p>
+            </form>
+          </div>
+        </section>
+      </main>
 
-            <div class="stack__state" data-state="6">
-              <span class="t-meta stack__plate-idx">Plate 06 / 06</span>
-              <h3 class="t-display-m">Member activity</h3>
-              <p class="t-body-l">Attendance and engagement per member, so a lapsing member is a conversation, not a surprise.</p>
-              <ul class="stack__caps t-meta">
-                <li>Attendance history</li>
-                <li>Inactivity flags</li>
-                <li>Renewals at the right time</li>
-              </ul>
-            </div>
-
-            <div class="stack__state" data-state="7">
-              <h2 class="t-display-l">The full stack,<br>lifted together.</h2>
-              <p class="t-body-l">Every module reads and writes the same record. A payment at reception is already in the ledger, already on the member, already in the daily close. Nothing falls between the plates.</p>
-            </div>
+      <footer class="footer" data-scene-theme="dark">
+        <div class="container footer__grid">
+          <div class="footer__brand">
+            <svg class="footer__lockup" aria-label="RIVET" role="img"><use href="#rivet-lockup" /></svg>
+            <p class="footer__tagline">Revenue and operations platform for gyms in Jordan and the region.</p>
+          </div>
+          <nav class="footer__nav" aria-label="Footer">
+            <a class="link" href="#journey">The journey</a>
+            <a class="link" href="#accountability">Accountability</a>
+            <a class="link" href="#floor">The floor</a>
+            <a class="link" href="#region">Jordan &amp; MENA</a>
+            <a class="link" href="#contact">Book a walkthrough</a>
+          </nav>
+          <div class="footer__meta">
+            <p>Amman, Jordan</p>
+            <p>© 2026 RIVET</p>
           </div>
         </div>
-
-        <div class="stack__progress" aria-hidden="true"><span></span></div>
-      </div>
+      </footer>
     </div>
-  </section>
-
-  <!-- 03 — MODULES -->
-  <section class="modules" id="modules" data-theme="dark">
-    <div class="wrap">
-      <div class="sec-head" data-reveal>
-        <span class="sec-head__idx t-meta">03</span>
-        <span class="sec-head__pin" aria-hidden="true"></span>
-        <span class="sec-head__label t-meta">Modules</span>
-      </div>
-
-      <div class="grid modules__intro">
-        <h2 class="t-display-l modules__title" data-reveal>
-          <span class="line"><span>What each</span></span>
-          <span class="line"><span>plate carries.</span></span>
-        </h2>
-        <p class="t-body-l modules__lead" data-reveal><span class="wipe">Six modules, one record. Everything a gym does between opening the door and counting the drawer.</span></p>
-      </div>
-
-      <ol class="modules__list" data-reveal data-reveal-stagger>
-        <li class="module">
-          <button class="module__row" type="button" aria-expanded="false" aria-controls="module-1" data-module-toggle>
-            <span class="module__idx t-meta">01</span>
-            <span class="module__name t-display-m">Sales</span>
-            <span class="module__sum">From walk-in to member, with a name on every sale.</span>
-            <span class="module__toggle" aria-hidden="true"></span>
-          </button>
-          <div class="module__panel" id="module-1" aria-hidden="true">
-            <div class="module__panel-inner">
-              <ul class="module__caps">
-                <li>Leads, walk-ins and trials logged to the staff member who handled them</li>
-                <li>Follow-ups with due dates instead of memory</li>
-                <li>Conversion by person, by day, by branch</li>
-                <li>Every sale carries a name and a time</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li class="module">
-          <button class="module__row" type="button" aria-expanded="false" aria-controls="module-2" data-module-toggle>
-            <span class="module__idx t-meta">02</span>
-            <span class="module__name t-display-m">Memberships</span>
-            <span class="module__sum">Plans, renewals and freezes, with expiries the desk can see.</span>
-            <span class="module__toggle" aria-hidden="true"></span>
-          </button>
-          <div class="module__panel" id="module-2" aria-hidden="true">
-            <div class="module__panel-inner">
-              <ul class="module__caps">
-                <li>Plans, renewals, freezes, upgrades and transfers</li>
-                <li>Family and group memberships</li>
-                <li>Expiry lists at reception, not in a spreadsheet</li>
-                <li>Access ends when the membership ends</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li class="module">
-          <button class="module__row" type="button" aria-expanded="false" aria-controls="module-3" data-module-toggle>
-            <span class="module__idx t-meta">03</span>
-            <span class="module__name t-display-m">Payments</span>
-            <span class="module__sum">Cash, card, CliQ and installments. A receipt for every dinar.</span>
-            <span class="module__toggle" aria-hidden="true"></span>
-          </button>
-          <div class="module__panel" id="module-3" aria-hidden="true">
-            <div class="module__panel-inner">
-              <ul class="module__caps">
-                <li>Cash, card, CliQ and installment plans</li>
-                <li>A receipt for every payment, including partial ones</li>
-                <li>Outstanding balances by member</li>
-                <li>End-of-shift reconciliation against the drawer</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li class="module">
-          <button class="module__row" type="button" aria-expanded="false" aria-controls="module-4" data-module-toggle>
-            <span class="module__idx t-meta">04</span>
-            <span class="module__name t-display-m">Reception</span>
-            <span class="module__sum">Check-in, who is inside, and a proper shift handover.</span>
-            <span class="module__toggle" aria-hidden="true"></span>
-          </button>
-          <div class="module__panel" id="module-4" aria-hidden="true">
-            <div class="module__panel-inner">
-              <ul class="module__caps">
-                <li>Check-in by card, code or phone number</li>
-                <li>Who is inside right now</li>
-                <li>Front-desk sales and top-ups</li>
-                <li>Shift open, shift close, handover notes</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li class="module">
-          <button class="module__row" type="button" aria-expanded="false" aria-controls="module-5" data-module-toggle>
-            <span class="module__idx t-meta">05</span>
-            <span class="module__name t-display-m">Operations</span>
-            <span class="module__sum">Staff, shifts, classes and the daily close, in one place.</span>
-            <span class="module__toggle" aria-hidden="true"></span>
-          </button>
-          <div class="module__panel" id="module-5" aria-hidden="true">
-            <div class="module__panel-inner">
-              <ul class="module__caps">
-                <li>Staff, shifts and roles</li>
-                <li>Classes, trainers and capacity</li>
-                <li>Daily tasks and maintenance logs</li>
-                <li>The daily close on one screen</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li class="module">
-          <button class="module__row" type="button" aria-expanded="false" aria-controls="module-6" data-module-toggle>
-            <span class="module__idx t-meta">06</span>
-            <span class="module__name t-display-m">Member activity</span>
-            <span class="module__sum">Attendance and engagement, so lapses are seen before they happen.</span>
-            <span class="module__toggle" aria-hidden="true"></span>
-          </button>
-          <div class="module__panel" id="module-6" aria-hidden="true">
-            <div class="module__panel-inner">
-              <ul class="module__caps">
-                <li>Attendance history per member</li>
-                <li>Inactivity flags before members disappear</li>
-                <li>Class bookings and no-shows</li>
-                <li>Renewal conversations at the right time</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- 04 — A DAY ON RIVET -->
-  <section class="day" id="day" data-theme="paper" data-cover>
-    <div class="wrap day__grid">
-      <div class="day__aside">
-        <div class="day__sticky">
-          <div class="sec-head">
-            <span class="sec-head__idx t-meta">04</span>
-            <span class="sec-head__pin" aria-hidden="true"></span>
-            <span class="sec-head__label t-meta">A day on RIVET</span>
-          </div>
-          <p class="day__clock" aria-live="polite" aria-atomic="true">
-            <span class="day__time" data-clock>06:00</span>
-            <span class="day__where t-meta" data-where>Reception</span>
-          </p>
-        </div>
-      </div>
-
-      <ol class="day__list">
-        <li class="moment" data-time="06:00" data-where="Reception" data-reveal>
-          <span class="moment__time t-meta">06:00</span>
-          <h3 class="t-display-m">Doors open.</h3>
-          <p class="t-body-l">Members check in. The desk sees who is active, who expires this week and who still owes a balance, before anyone asks.</p>
-          <span class="moment__tag t-meta">Reception · Memberships</span>
-        </li>
-        <li class="moment" data-time="09:30" data-where="Sales desk" data-reveal>
-          <span class="moment__time t-meta">09:30</span>
-          <h3 class="t-display-m">A walk-in asks about prices.</h3>
-          <p class="t-body-l">The trial is logged to the staff member who handled it. If they join next week, the sale is theirs, on record.</p>
-          <span class="moment__tag t-meta">Sales</span>
-        </li>
-        <li class="moment" data-time="13:15" data-where="Reception" data-reveal>
-          <span class="moment__time t-meta">13:15</span>
-          <h3 class="t-display-m">Half now, half next month.</h3>
-          <p class="t-body-l">An installment plan is created, a receipt is issued, and the balance is visible to everyone who needs to see it.</p>
-          <span class="moment__tag t-meta">Payments</span>
-        </li>
-        <li class="moment" data-time="17:30" data-where="The floor" data-reveal>
-          <span class="moment__time t-meta">17:30</span>
-          <h3 class="t-display-m">Peak hour.</h3>
-          <p class="t-body-l">Class capacity, the trainer schedule and the number of people inside, on one screen at reception.</p>
-          <span class="moment__tag t-meta">Operations · Member activity</span>
-        </li>
-        <li class="moment" data-time="21:00" data-where="Reception" data-reveal>
-          <span class="moment__time t-meta">21:00</span>
-          <h3 class="t-display-m">Shift handover.</h3>
-          <p class="t-body-l">The cash in the drawer is counted against what the system says was collected. The difference, if there is one, has a name.</p>
-          <span class="moment__tag t-meta">Reception · Payments</span>
-        </li>
-        <li class="moment" data-time="23:00" data-where="The office" data-reveal>
-          <span class="moment__time t-meta">23:00</span>
-          <h3 class="t-display-m">Daily close.</h3>
-          <p class="t-body-l">The owner sees the day as it happened: revenue by method, new members, renewals due, and who did what.</p>
-          <span class="moment__tag t-meta">Operations</span>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- 05 — ACCOUNTABILITY -->
-  <section class="account" id="accountability" data-theme="ink">
-    <div class="wrap">
-      <div class="sec-head" data-reveal>
-        <span class="sec-head__idx t-meta">05</span>
-        <span class="sec-head__pin" aria-hidden="true"></span>
-        <span class="sec-head__label t-meta">Accountability</span>
-      </div>
-
-      <h2 class="t-display-xl account__title" data-reveal>
-        <span class="line"><span>Nothing gets</span></span>
-        <span class="line"><span>edited quietly.</span></span>
-      </h2>
-
-      <div class="grid account__body">
-        <p class="t-body-l account__lead" data-reveal><span class="wipe">Every sale, payment, check-in and shift change is written down the moment it happens, under the name of the person who did it. Corrections are allowed. Silent ones are not. The owner sees the day as it happened, not as it was remembered.</span></p>
-
-        <div class="chain" data-reveal role="img" aria-label="A payment’s chain of custody: the member pays, reception records it, the shift closes against the drawer, and the owner sees the day. One pin locks the chain.">
-          <div class="chain__rod" aria-hidden="true"></div>
-          <div class="chain__node" style="--i:0">
-            <span class="chain__plate">Member pays</span>
-            <span class="chain__sub t-meta">Who · amount · method</span>
-          </div>
-          <div class="chain__node" style="--i:1">
-            <span class="chain__plate">Reception records</span>
-            <span class="chain__sub t-meta">Name · time · shift</span>
-          </div>
-          <div class="chain__node" style="--i:2">
-            <span class="chain__plate">Shift closes</span>
-            <span class="chain__sub t-meta">Drawer vs. system</span>
-          </div>
-          <div class="chain__node" style="--i:3">
-            <span class="chain__plate">Owner sees</span>
-            <span class="chain__sub t-meta">The day, as it happened</span>
-          </div>
-          <div class="chain__pin" aria-hidden="true"><span class="chain__pin-rod"></span><span class="chain__pin-ring"></span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 06 — BUILT FOR HERE -->
-  <section class="here" id="here" data-theme="paper" data-cover>
-    <div class="wrap">
-      <div class="sec-head" data-reveal>
-        <span class="sec-head__idx t-meta">06</span>
-        <span class="sec-head__pin" aria-hidden="true"></span>
-        <span class="sec-head__label t-meta">Built for here</span>
-      </div>
-
-      <div class="here__bilingual" data-reveal>
-        <h2 class="t-display-xl here__en">
-          <span class="line"><span>Built in</span></span>
-          <span class="line"><span>Amman.</span></span>
-        </h2>
-        <p class="here__ar" lang="ar" dir="rtl"><span class="line"><span>مبنيّ في عمّان.</span></span></p>
-      </div>
-
-      <div class="grid here__body">
-        <p class="t-body-l here__lead" data-reveal><span class="wipe">For the way gyms run here, not the way a template assumes they do.</span></p>
-
-        <dl class="spec" data-reveal data-reveal-stagger>
-          <div class="spec__row">
-            <dt class="t-meta">Currency</dt>
-            <dd>JOD, to the fils. Three decimals, everywhere a number appears.</dd>
-          </div>
-          <div class="spec__row">
-            <dt class="t-meta">Payments</dt>
-            <dd>Cash, card, CliQ and installments, with a receipt for each.</dd>
-          </div>
-          <div class="spec__row">
-            <dt class="t-meta">Language</dt>
-            <dd>English and Arabic.</dd>
-          </div>
-          <div class="spec__row">
-            <dt class="t-meta">Calendar</dt>
-            <dd>Ramadan hours, Friday schedules and public holidays.</dd>
-          </div>
-          <div class="spec__row">
-            <dt class="t-meta">Memberships</dt>
-            <dd>Family plans, women’s hours, freezes and transfers.</dd>
-          </div>
-          <div class="spec__row">
-            <dt class="t-meta">Branches</dt>
-            <dd>One account across branches, in Amman or anywhere in the region.</dd>
-          </div>
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  <!-- 07 — CONTACT / FOOTER -->
-  <footer class="footer" id="contact" data-theme="ink">
-    <div class="wrap footer__grid">
-      <div class="footer__cta">
-        <div class="sec-head" data-reveal>
-          <span class="sec-head__idx t-meta">07</span>
-          <span class="sec-head__pin" aria-hidden="true"></span>
-          <span class="sec-head__label t-meta">Contact</span>
-        </div>
-        <h2 class="t-display-xl footer__title" data-reveal>
-          <span class="line"><span>Pin the</span></span>
-          <span class="line"><span>stack<span class="pin-dot" aria-hidden="true"></span><span class="sr-only">.</span></span></span>
-        </h2>
-        <p class="t-body-l footer__lead" data-reveal><span class="wipe">See your gym on RIVET. A walkthrough in Arabic or English, at your desk or ours.</span></p>
-        <div class="footer__actions" data-reveal>
-          <a class="btn btn--paper" href="mailto:hello@rivet.jo?subject=Walkthrough%20request">Book a walkthrough</a>
-          <a class="link footer__mail" href="mailto:hello@rivet.jo">hello@rivet.jo</a>
-        </div>
-      </div>
-      <div class="footer__figure" aria-hidden="true">
-        <svg class="footer__glyph" focusable="false"><use href="#rivet-glyph"/></svg>
-      </div>
-    </div>
-    <div class="wrap footer__meta t-meta">
-      <span class="footer__meta-brand">RIVET</span>
-      <span>Amman, Jordan</span>
-      <span>English · <span lang="ar">العربية</span></span>
-      <span>© 2026 RIVET. All rights reserved.</span>
-    </div>
-  </footer>
-
-</main>
-
-<script src="js/main.js" defer></script>
-</body>
+  </body>
 </html>
