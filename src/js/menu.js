@@ -95,7 +95,9 @@ export function initMenu() {
 
   links.forEach((a) => {
     a.addEventListener("click", (e) => {
-      const href = a.getAttribute("href") || "";
+      const raw = a.getAttribute("href") || "";
+      const onHome = /^\/(index\.html)?$/.test(location.pathname);
+      const href = raw.startsWith("/#") && onHome ? raw.slice(1) : raw;
       if (!href.startsWith("#")) return;
       const target = document.querySelector(href);
       if (!target) return;

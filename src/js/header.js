@@ -7,10 +7,13 @@ export function initHeader() {
   if (!header) return;
 
   const darkScenes = [...document.querySelectorAll("[data-scene-theme='dark']")];
-  const menuLinks = [...document.querySelectorAll(".menu__link[href^='#']")];
+  const menuLinks = [...document.querySelectorAll(".menu__link")];
   const targets = menuLinks
-    .map((a) => ({ a, el: document.querySelector(a.getAttribute("href")) }))
-    .filter((t) => t.el);
+    .map((a) => {
+      const hash = (a.getAttribute("href") || "").replace(/^\//, "");
+      return hash.startsWith("#") ? { a, el: document.getElementById(hash.slice(1)) } : null;
+    })
+    .filter((t) => t && t.el);
 
   let ticking = false;
 

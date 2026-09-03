@@ -1,0 +1,264 @@
+/* ==========================================================================
+   Documents — privacy, terms, and the agreement text on the signing page.
+   A sticky contents column on the left, numbered sections on the right.
+   ========================================================================== */
+
+.doc {
+  padding-block: calc(var(--header-h) + clamp(3rem, 8vh, 6rem)) var(--space-section);
+}
+
+.doc__head {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+  padding-bottom: clamp(2rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--rule-2);
+}
+
+.doc__head > .label {
+  grid-column: 1 / 3;
+  align-self: start;
+  margin-top: 0.6em;
+}
+
+.doc__title {
+  grid-column: 4 / 12;
+}
+
+.doc__intro {
+  grid-column: 4 / 11;
+  margin-top: 1.5rem;
+}
+
+.doc__updated {
+  grid-column: 4 / 11;
+  margin-top: 1.25rem;
+  font-size: var(--fs-small);
+  color: var(--fg-muted);
+}
+
+.doc__body {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+  padding-top: clamp(2rem, 5vw, 4rem);
+}
+
+.doc__toc {
+  grid-column: 1 / 4;
+  position: sticky;
+  top: calc(var(--header-h) + 1.5rem);
+  align-self: start;
+}
+
+.doc__toc .label {
+  margin-bottom: 1rem;
+}
+
+.doc__toc ol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: var(--fs-small);
+  counter-reset: toc;
+}
+
+.doc__toc a {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.2rem 0;
+  color: var(--fg-muted);
+  text-decoration: none;
+  transition: color var(--d-2) var(--ease-out);
+}
+
+.doc__toc a::before {
+  counter-increment: toc;
+  content: counter(toc, decimal-leading-zero);
+  flex: none;
+  width: 1.6rem;
+  font-size: var(--fs-index);
+  letter-spacing: 0.04em;
+}
+
+.doc__toc a:hover,
+.doc__toc a:focus-visible,
+.doc__toc a[aria-current="true"] {
+  color: var(--ink);
+}
+
+.doc__toc a[aria-current="true"]::before {
+  color: var(--red-text);
+}
+
+.doc__content {
+  grid-column: 4 / 11;
+}
+
+.doc__content section + section {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.doc__content section {
+  scroll-margin-top: calc(var(--header-h) + 1.5rem);
+}
+
+.doc__content h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: var(--fs-h3);
+  font-weight: 560;
+  font-stretch: 102%;
+  letter-spacing: -0.014em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.doc__content h2 .index {
+  flex: none;
+}
+
+.doc__content h3 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.doc__content p,
+.doc__content li,
+.doc__content dd {
+  max-width: 38em;
+  color: var(--charcoal-2);
+  text-wrap: pretty;
+}
+
+.doc__content p + p {
+  margin-top: 0.9rem;
+}
+
+.doc__content ul,
+.doc__content ol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.9rem 0;
+}
+
+.doc__content li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.doc__content ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 10px;
+  height: 2px;
+  background: var(--red);
+}
+
+.doc__content ol {
+  counter-reset: item;
+}
+
+.doc__content ol li::before {
+  counter-increment: item;
+  content: counter(item, lower-alpha) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: var(--fs-index);
+  color: var(--fg-muted);
+}
+
+.doc__content .link {
+  color: var(--ink);
+}
+
+.doc__content table {
+  width: 100%;
+  margin: 1rem 0;
+  border-collapse: collapse;
+  font-size: var(--fs-small);
+}
+
+.doc__content th,
+.doc__content td {
+  padding: 0.65rem 1rem 0.65rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+  color: var(--charcoal-2);
+}
+
+.doc__content th {
+  font-size: var(--fs-label);
+  font-weight: 560;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.doc__content dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.5rem 1.5rem;
+  margin: 0.9rem 0;
+  font-size: var(--fs-small);
+}
+
+.doc__content dt {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.doc__note {
+  margin-top: 3rem;
+  padding: 1.25rem 1.5rem;
+  max-width: 42em;
+  border-left: 3px solid var(--red);
+  background: var(--paper-2);
+  font-size: var(--fs-small);
+}
+
+@media (max-width: 899px) {
+  .doc__head > .label,
+  .doc__title,
+  .doc__intro,
+  .doc__updated,
+  .doc__toc,
+  .doc__content {
+    grid-column: 1 / -1;
+  }
+
+  .doc__head > .label {
+    margin: 0 0 1rem;
+  }
+
+  .doc__toc {
+    position: static;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .doc__toc ol {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.5rem;
+  }
+
+  .doc__content dl {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+
+  .doc__content dd + dt {
+    margin-top: 0.6rem;
+  }
+}
